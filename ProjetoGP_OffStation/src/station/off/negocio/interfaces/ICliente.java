@@ -4,16 +4,16 @@ import station.off.negocio.utils.exceptions.InvalidTypeException;
 
 public interface ICliente {
 
-	public void carregar(Object resultado) throws InvalidTypeException;
+    public void carregar(Object resultado) throws InvalidTypeException;
 
-	public boolean deletar();
+    public boolean deletar();
 
-	public int getId();
+    public int getId();
 
-	public String getNome();
+    public String getNome();
 
-	public String getSobrenome();
+    public String getSobrenome();
 
-	public String getEmail();
+    public String getEmail();
 
 }
