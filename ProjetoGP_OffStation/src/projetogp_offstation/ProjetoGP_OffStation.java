@@ -15,6 +15,7 @@ public class ProjetoGP_OffStation {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+    	int teste = 0;
         // TODO code application logic here
     }
     
