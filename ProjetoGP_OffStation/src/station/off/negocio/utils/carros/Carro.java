@@ -1,7 +1,6 @@
 package station.off.negocio.utils.carros;
 
 import jdbchelper.QueryResult;
-import station.off.Erros;
 import station.off.Principal;
 import station.off.negocio.interfaces.ICarro;
 import station.off.negocio.utils.exceptions.InvalidTypeException;
@@ -22,19 +21,14 @@ public class Carro implements ICarro {
     }
 
     @Override
-    public void carregar(Object resultado) throws InvalidTypeException {
-        if ((resultado instanceof QueryResult)) {
-            QueryResult resultadoPronto = (QueryResult) resultado;
-            this.setId(resultadoPronto.getInt("id"));
-            this.setAno(resultadoPronto.getInt("Ano"), false);
-            this.setDescricao(resultadoPronto.getString("Descricao"), false);
-            this.setCor(resultadoPronto.getString("Cor"), false);
-            this.setPlaca(resultadoPronto.getString("Placa"), false);
-            this.setModelo(resultadoPronto.getString("Modelo"), false);
-            resultadoPronto.close();
-        } else {
-            throw Erros.TIPO_INVALIDO;
-        }
+    public void carregar(QueryResult resultado) throws InvalidTypeException {
+        this.setId(resultado.getInt("id"));
+        this.setAno(resultado.getInt("Ano"), false);
+        this.setDescricao(resultado.getString("Descricao"), false);
+        this.setCor(resultado.getString("Cor"), false);
+        this.setPlaca(resultado.getString("Placa"), false);
+        this.setModelo(resultado.getString("Modelo"), false);
+        resultado.close();
     }
 
     @Override

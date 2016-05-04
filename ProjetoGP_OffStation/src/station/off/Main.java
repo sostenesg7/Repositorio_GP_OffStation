@@ -11,6 +11,7 @@ public final class Main {
     public static void main(String[] args) throws InvalidTypeException {
         Principal principal = new Principal();
 
+        // Dados que serão utilizados no cadastro do veiculo
         Map<String, Object> informacao = new HashMap<String, Object>();
         informacao.put("Ano", 2012);
         informacao.put("Modelo", "moto");
@@ -18,7 +19,10 @@ public final class Main {
         informacao.put("Placa", "LLL0000");
         informacao.put("Descricao", "Lavar.");
 
-        principal.criarCarro(informacao);
+        // Cria o carro com as informacões do Map
+        GerenciarCarro.criar(principal, informacao);
+        
+        // Pega o carro com ID 5
         ICarro carro = GerenciarCarro.pegar(principal, 5);
 
         if ((carro != null)) {

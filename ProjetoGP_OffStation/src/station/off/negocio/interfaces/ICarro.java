@@ -1,10 +1,11 @@
 package station.off.negocio.interfaces;
 
+import jdbchelper.QueryResult;
 import station.off.negocio.utils.exceptions.InvalidTypeException;
 
 public interface ICarro {
 
-    public void carregar(Object resultado) throws InvalidTypeException;
+    public void carregar(QueryResult resultado) throws InvalidTypeException;
 
     public boolean deletar();
 

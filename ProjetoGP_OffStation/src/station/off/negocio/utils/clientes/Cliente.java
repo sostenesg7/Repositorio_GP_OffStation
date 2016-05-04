@@ -1,19 +1,14 @@
 package station.off.negocio.utils.clientes;
 
 import jdbchelper.QueryResult;
-import station.off.Erros;
 import station.off.negocio.interfaces.ICliente;
 import station.off.negocio.utils.exceptions.InvalidTypeException;
 
 public class Cliente implements ICliente {
 
     @Override
-    public void carregar(Object resultado) throws InvalidTypeException {
-        if ((resultado instanceof QueryResult)) {
-
-        } else {
-            throw Erros.TIPO_INVALIDO;
-        }
+    public void carregar(QueryResult resultado) throws InvalidTypeException {
+        resultado.close();
     }
 
     @Override
