@@ -3,7 +3,7 @@ package station.off.negocio.interfaces;
 import jdbchelper.QueryResult;
 import station.off.negocio.utils.exceptions.InvalidTypeException;
 
-public interface ICarro {
+public interface IVeiculo {
 
     public void carregar(QueryResult resultado) throws InvalidTypeException;
 

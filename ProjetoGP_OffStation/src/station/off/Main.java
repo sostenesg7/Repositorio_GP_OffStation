@@ -2,12 +2,18 @@ package station.off;
 
 import java.util.HashMap;
 import java.util.Map;
-import station.off.negocio.interfaces.ICarro;
-import station.off.negocio.utils.carros.GerenciarCarro;
+import station.off.negocio.interfaces.IVeiculo;
+import station.off.negocio.utils.carros.GerenciarVeiculo;
 import station.off.negocio.utils.exceptions.InvalidTypeException;
 
 public final class Main {
 
+    /**
+     *
+     * @author Luan Augusto
+     * @param args
+     * @throws InvalidTypeException - Futuramente substituir para try - catch.
+     */
     public static void main(String[] args) throws InvalidTypeException {
         Principal principal = new Principal();
 
@@ -20,10 +26,10 @@ public final class Main {
         informacao.put("Descricao", "Lavar.");
 
         // Cria o carro com as informacões do Map
-        GerenciarCarro.criar(principal, informacao);
-        
+        GerenciarVeiculo.criar(principal, informacao);
+
         // Pega o carro com ID 5
-        ICarro carro = GerenciarCarro.pegar(principal, 5);
+        IVeiculo carro = GerenciarVeiculo.pegar(principal, 5);
 
         if ((carro != null)) {
             System.out.println("Carro existe...");
