@@ -13,6 +13,7 @@ public class Principal {
     }
 
     /**
+     * Conecta com o banco de dados.
      * 
      * @author Luan Augusto
      */
@@ -24,6 +25,7 @@ public class Principal {
     /**
      * 
      * @author Luan Augusto
+     * @return JdbcHelper - Responsável pelas consultas ao banco de dados.
      */
     public JdbcHelper getJdbc() {
         return this.getConexao().getJdbc();
@@ -32,6 +34,7 @@ public class Principal {
     /**
      * 
      * @author Luan Augusto
+     * @return IJdbc - Objeto principal de conexão com o banco.
      */
     public IJdbc getConexao() {
         return this.conexao;
@@ -40,6 +43,7 @@ public class Principal {
     /**
      * 
      * @author Luan Augusto
+     * @param conexao IJdbc - Objeto a ser setado como instancia da conexao.
      */
     private void setConexao(IJdbc conexao) {
         this.conexao = conexao;
