@@ -14,7 +14,7 @@ public class Principal {
 
     private void conectar() {
         // Conexoes, porta, host, usuario, senha, database
-        this.setConexao(new Jdbc(10, 3306, "localhost", "root", "100897", "offstation"));
+        this.setConexao(new Jdbc(10, 3306, "localhost", "root", "123456", "offstation"));
     }
 
     public JdbcHelper getJdbc() {
