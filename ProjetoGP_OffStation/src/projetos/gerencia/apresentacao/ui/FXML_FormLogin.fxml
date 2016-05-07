@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,17 +10,24 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="291.0" prefWidth="320" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projetos.gerencia.apresentacao.ui.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="270.0" prefWidth="320" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projetos.gerencia.apresentacao.ui.FXMLDocumentController">
    <children>
-      <Button fx:id="btn1" layoutX="227.0" layoutY="252.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="81.0" text="Login" />
-      <TextField fx:id="txtLogin" layoutX="54.0" layoutY="185.0" prefHeight="25.0" prefWidth="254.0" />
-      <Label fx:id="lbl1" layoutX="12.0" layoutY="189.0" text="Login" />
-      <Label fx:id="lbl2" layoutX="12.0" layoutY="222.0" text="Senha" />
       <ImageView fitHeight="166.0" fitWidth="314.0" layoutX="2.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@ImgOficina.png" />
          </image>
       </ImageView>
-      <PasswordField fx:id="txtSenha" layoutX="54.0" layoutY="218.0" prefHeight="25.0" prefWidth="254.0" />
+      <Button fx:id="btnLogin" layoutX="226.0" layoutY="245.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="81.0" text="Login" />
+      <TextField fx:id="txtLogin" layoutX="53.0" layoutY="185.0" onKeyPressed="#pularCampoLogin" prefHeight="25.0" prefWidth="254.0" promptText="Login" />
+      <Label fx:id="labelLogin" layoutX="11.0" layoutY="189.0" text="Login" />
+      <Label fx:id="labelSenha" layoutX="11.0" layoutY="222.0" text="Senha" />
+      <PasswordField fx:id="txtSenha" layoutX="53.0" layoutY="218.0" onKeyPressed="#pularCampoSenha" prefHeight="25.0" prefWidth="254.0" promptText="Senha" />
+      <Hyperlink layoutX="7.0" layoutY="249.0" text="Recuperar Senha" />
+      <Label fx:id="labelNotificacao" layoutX="6.0" layoutY="164.0" prefHeight="17.0" prefWidth="308.0" text="Label" textFill="#8f1532" visible="false">
+         <font>
+            <Font name="Calibri Light Italic" size="13.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="retanguloNotificacao" arcHeight="5.0" arcWidth="5.0" fill="#ff2b565e" height="17.0" layoutX="-1.0" layoutY="164.0" stroke="#0000003f" strokeType="INSIDE" visible="false" width="320.0" />
    </children>
 </AnchorPane>
