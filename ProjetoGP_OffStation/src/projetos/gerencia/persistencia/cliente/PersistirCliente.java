@@ -1,5 +1,7 @@
 package projetos.gerencia.persistencia.cliente;
 
+import jdbchelper.QueryResult;
+import projetos.gerencia.negocio.cliente.Cliente;
 import projetos.gerencia.negocio.cliente.ICliente;
 import projetos.gerencia.persistencia.Conectar;
 
@@ -24,6 +26,22 @@ public class PersistirCliente {
             return this.atualizar(cliente);
         }
         return this.inserir(cliente);
+    }
+
+    public ICliente recuperar(int id) {
+        if ((id > 0)) {
+            QueryResult resultado = Conectar.getInstancia().getJdbc().query("SELECT * FROM `clientes` WHERE `id` = ?", new Object[]{id});
+
+            try {
+                if ((resultado.next())) {
+                    ICliente cliente = new Cliente(resultado.getInt("id"), resultado.getString("nome"), resultado.getString("sobrenome"), resultado.getString("email"));
+                    return cliente;
+                }
+            } finally {
+                resultado.close();
+            }
+        }
+        return null;
     }
 
     private boolean inserir(ICliente cliente) {

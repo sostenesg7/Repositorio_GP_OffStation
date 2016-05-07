@@ -4,9 +4,9 @@ import projetos.gerencia.negocio.cliente.ICliente;
 
 public interface IVeiculo {
 
-    public int getId();
-
     public ICliente getDono();
+
+    public int getId();
 
     public String getPlaca();
 

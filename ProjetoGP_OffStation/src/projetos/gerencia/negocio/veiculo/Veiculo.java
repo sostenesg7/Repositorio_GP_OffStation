@@ -5,14 +5,14 @@ import projetos.gerencia.negocio.cliente.ICliente;
 public final class Veiculo implements IVeiculo {
 
     private ICliente dono;
+    private int id;
+    private String placa;
+    private String descricao;
+    private String entrada;
+    private String saida;
 
     public Veiculo(ICliente dono) {
-
-    }
-
-    @Override
-    public int getId() {
-        return 0;
+        this.setDono(dono);
     }
 
     @Override
@@ -25,23 +25,48 @@ public final class Veiculo implements IVeiculo {
     }
 
     @Override
+    public int getId() {
+        return 0;
+    }
+
+    private void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
     public String getPlaca() {
-        return null;
+        return this.placa;
+    }
+
+    private void setPlaca(String placa) {
+        this.placa = placa;
     }
 
     @Override
     public String getDescricao() {
-        return null;
+        return this.descricao;
+    }
+
+    private void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     @Override
     public String getEntrada() {
-        return null;
+        return this.entrada;
+    }
+
+    private void setEntrada(String entrada) {
+        this.entrada = entrada;
     }
 
     @Override
     public String getSaida() {
-        return null;
+        return this.saida;
+    }
+
+    private void setSaida(String saida) {
+        this.saida = saida;
     }
 
 }
