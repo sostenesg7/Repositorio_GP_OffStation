@@ -1,5 +1,7 @@
 package projetos.gerencia.persistencia.cliente;
 
+import java.util.HashMap;
+import java.util.Map;
 import jdbchelper.QueryResult;
 import projetos.gerencia.negocio.cliente.Cliente;
 import projetos.gerencia.negocio.cliente.ICliente;
@@ -28,22 +30,6 @@ public class PersistirCliente {
         return this.inserir(cliente);
     }
 
-    public ICliente recuperar(int id) {
-        if ((id > 0)) {
-            QueryResult resultado = Conectar.getInstancia().getJdbc().query("SELECT * FROM `clientes` WHERE `id` = ?", new Object[]{id});
-
-            try {
-                if ((resultado.next())) {
-                    ICliente cliente = new Cliente(resultado.getInt("id"), resultado.getString("nome"), resultado.getString("sobrenome"), resultado.getString("email"));
-                    return cliente;
-                }
-            } finally {
-                resultado.close();
-            }
-        }
-        return null;
-    }
-
     private boolean inserir(ICliente cliente) {
         return Conectar.getInstancia().getJdbc().execute("INSERT INTO `clientes` ( `id`, `nome`, `sobrenome`, `email` ) VALUES ( NULL, ?, ?, ? )",
                 new Object[]{cliente.getNome(), cliente.getSobrenome(), cliente.getEmail()}) == 1;
@@ -52,6 +38,40 @@ public class PersistirCliente {
     private boolean atualizar(ICliente cliente) {
         return Conectar.getInstancia().getJdbc().execute("UPDATE `clientes` SET ( `nome` = ? ), ( `sobrenome` = ? ), ( `email` = ? ) WHERE ( `id` = ? )",
                 new Object[]{cliente.getNome(), cliente.getSobrenome(), cliente.getEmail()}) == 1;
+    }
+
+    private ICliente construirCliente(QueryResult resultado) {
+        if ((resultado != null)) {
+            ICliente cliente = new Cliente(resultado.getInt("id"), resultado.getString("nome"), resultado.getString("sobrenome"), resultado.getString("email"));
+            return cliente;
+        }
+
+        return null;
+    }
+
+    public ICliente recuperar(int id) {
+        QueryResult resultado = Conectar.getInstancia().getJdbc().query("SELECT * FROM `clientes` WHERE ( `id` = ? )", new Object[]{id});
+        ICliente cliente = null;
+        
+        if ((resultado.next())) {
+            cliente = this.construirCliente(resultado);
+        }
+
+        resultado.close();
+        return cliente;
+    }
+
+    public Map<Integer, ICliente> recuperarTodos() {
+        Map<Integer, ICliente> clientes = new HashMap();
+        QueryResult resultado = Conectar.getInstancia().getJdbc().query("SELECT * FROM `clientes`");
+
+        while (resultado.next()) {
+            ICliente cliente = this.construirCliente(resultado);
+            clientes.put(cliente.getId(), cliente);
+        }
+
+        resultado.close();
+        return clientes;
     }
 
 }

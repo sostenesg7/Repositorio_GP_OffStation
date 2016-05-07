@@ -8,6 +8,8 @@ public interface ICliente {
 
     public String getSobrenome();
 
+    public String getNomeCompleto();
+
     public String getEmail();
 
 }

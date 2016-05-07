@@ -1,7 +1,7 @@
 package projetos.gerencia.apresentacao;
 
+import projetos.gerencia.negocio.cliente.ClienteUtils;
 import projetos.gerencia.negocio.cliente.ICliente;
-import projetos.gerencia.persistencia.cliente.PersistirCliente;
 
 public class Main {
 
@@ -12,11 +12,15 @@ public class Main {
          irão preencher os fomulários e tals, no caso, será a parte gráfia, o GUI
          */
         
-        ControlarCliente novoCliente = new ControlarCliente("Outro", "Teste", "cliente@email.com");
+        ControlarCliente novoCliente = new ControlarCliente("Mais", "Testes", "cliente@email.com");
         novoCliente.salvar();
         
-        ICliente cliente = PersistirCliente.getInstancia().recuperar(1);
-        System.out.println("Nome: " + cliente.getNome());
+        ICliente cliente = ClienteUtils.getInstancia().recuperar(1);
+        System.out.println("Primeiro: " + cliente.getNomeCompleto());
+        
+        for (ICliente iterator : ClienteUtils.getInstancia().recuperarClientes().values()) {
+            System.out.println("Cliente " + iterator.getId() + " -> " + iterator.getNomeCompleto());
+        }
     }
 
 }

@@ -14,7 +14,6 @@ public class PersistirVeiculo {
         if ((PersistirVeiculo.INSTANCIA == null)) {
             PersistirVeiculo.INSTANCIA = new PersistirVeiculo();
         }
-
         return PersistirVeiculo.INSTANCIA;
     }
     

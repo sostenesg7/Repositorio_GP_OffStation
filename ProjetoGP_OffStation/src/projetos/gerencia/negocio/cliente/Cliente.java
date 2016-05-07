@@ -46,6 +46,12 @@ public final class Cliente implements ICliente {
     }
 
     @Override
+    public String getNomeCompleto() {
+        String nomeCompleto = new StringBuffer().append(this.getNome()).append(" ").append(this.getSobrenome()).toString();
+        return nomeCompleto;
+    }
+
+    @Override
     public String getEmail() {
         return email;
     }
