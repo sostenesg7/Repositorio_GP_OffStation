@@ -13,11 +13,13 @@ public class Main {
          */
         
         ControlarCliente novoCliente = new ControlarCliente("Mais", "Testes", "cliente@email.com");
-        novoCliente.salvar();
+        // novoCliente.salvar();
         
         ICliente cliente = ClienteUtils.getInstancia().recuperar(1);
-        System.out.println("Primeiro: " + cliente.getNomeCompleto());
+        System.out.println("Primeiro Cliente: " + cliente.getNomeCompleto());
+        System.out.println();
         
+        System.out.println("--- [ LISTANDO TODO MUNDO ] -------------------");
         for (ICliente iterator : ClienteUtils.getInstancia().recuperarClientes().values()) {
             System.out.println("Cliente " + iterator.getId() + " -> " + iterator.getNomeCompleto());
         }

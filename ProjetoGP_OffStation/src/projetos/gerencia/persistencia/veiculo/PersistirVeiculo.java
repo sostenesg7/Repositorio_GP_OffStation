@@ -22,10 +22,13 @@ public class PersistirVeiculo {
     }
 
     public boolean salvar(IVeiculo veiculo) {
-        if ((veiculo.getId() > 0)) {
-            return this.atualizar(veiculo);
-        }
-        return this.inserir(veiculo);
+        if ((veiculo != null)) {
+            if ((veiculo.getId() > 0)) {
+                return this.atualizar(veiculo);
+            }
+            return this.inserir(veiculo);
+            }
+        return false;
     }
 
     private boolean inserir(IVeiculo cliente) {

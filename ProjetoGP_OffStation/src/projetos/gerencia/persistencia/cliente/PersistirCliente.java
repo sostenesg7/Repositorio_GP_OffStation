@@ -24,15 +24,26 @@ public class PersistirCliente {
     }
 
     public boolean salvar(ICliente cliente) {
-        if ((cliente.getId() > 0)) {
-            return this.atualizar(cliente);
+        if ((cliente != null)) {
+            if ((cliente.getId() > 0)) {
+                return this.atualizar(cliente);
+            }
+            return this.inserir(cliente);
         }
-        return this.inserir(cliente);
+        return false;
+    }
+
+    public boolean remover(ICliente cliente) {
+        if ((cliente != null)) {
+            return Conectar.getInstancia().getJdbc().execute("DELETE FROM `clientes` WHERE ( `id` = ? )", new Object[]{cliente.getId()}) == 1;
+        }
+        return false;
     }
 
     private boolean inserir(ICliente cliente) {
         return Conectar.getInstancia().getJdbc().execute("INSERT INTO `clientes` ( `id`, `nome`, `sobrenome`, `email` ) VALUES ( NULL, ?, ?, ? )",
                 new Object[]{cliente.getNome(), cliente.getSobrenome(), cliente.getEmail()}) == 1;
+
     }
 
     private boolean atualizar(ICliente cliente) {
@@ -52,7 +63,7 @@ public class PersistirCliente {
     public ICliente recuperar(int id) {
         QueryResult resultado = Conectar.getInstancia().getJdbc().query("SELECT * FROM `clientes` WHERE ( `id` = ? )", new Object[]{id});
         ICliente cliente = null;
-        
+
         if ((resultado.next())) {
             cliente = this.construirCliente(resultado);
         }

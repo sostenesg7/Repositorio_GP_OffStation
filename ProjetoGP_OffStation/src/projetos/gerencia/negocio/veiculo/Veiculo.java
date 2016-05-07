@@ -11,8 +11,17 @@ public final class Veiculo implements IVeiculo {
     private String entrada;
     private String saida;
 
-    public Veiculo(ICliente dono) {
+    public Veiculo(int id, String placa, String descricao, String entrada, String saida) {
+        this(null, id, placa, descricao, entrada, saida);
+    }
+
+    public Veiculo(ICliente dono, int id, String placa, String descricao, String entrada, String saida) {
         this.setDono(dono);
+        this.setId(id);
+        this.setPlaca(placa);
+        this.setDescricao(descricao);
+        this.setEntrada(entrada);
+        this.setSaida(saida);
     }
 
     @Override
@@ -26,7 +35,7 @@ public final class Veiculo implements IVeiculo {
 
     @Override
     public int getId() {
-        return 0;
+        return this.id;
     }
 
     private void setId(int id) {
