@@ -1,8 +1,11 @@
 package projetos.gerencia.persistencia.cliente.funcionario;
 
 import jdbchelper.QueryResult;
+import projetos.gerencia.negocio.funcionario.Atendente;
 import projetos.gerencia.negocio.funcionario.Funcionario;
+import projetos.gerencia.negocio.funcionario.Gerente;
 import projetos.gerencia.negocio.funcionario.IFuncionario;
+import projetos.gerencia.negocio.funcionario.Mecanico;
 import projetos.gerencia.persistencia.Conectar;
 
 public class PersistirFuncionario {
@@ -36,10 +39,19 @@ public class PersistirFuncionario {
     }
 
     private IFuncionario construir(QueryResult resultado) {
+        IFuncionario funcionario = null;
         if ((resultado != null)) {
-            IFuncionario funcionario = new Funcionario(resultado.getInt("cpf"), resultado.getInt("tipo"), resultado.getString("nome"), resultado.getString("sobrenome"), resultado.getString("email"), resultado.getString("senha"));
-            return funcionario;
+            if ((resultado.getInt("tipo") == 1)) {
+                funcionario = new Gerente(resultado.getInt("cpf"), resultado.getInt("tipo"), resultado.getString("nome"), resultado.getString("sobrenome"), resultado.getString("email"), resultado.getString("senha"));
+            } else if ((resultado.getInt("tipo") == 2)) {
+                funcionario = new Atendente(resultado.getInt("cpf"), resultado.getInt("tipo"), resultado.getString("nome"), resultado.getString("sobrenome"), resultado.getString("email"), resultado.getString("senha"));
+            } else if ((resultado.getInt("tipo") == 3)) {
+                funcionario = new Mecanico(resultado.getInt("cpf"), resultado.getInt("tipo"), resultado.getString("nome"), resultado.getString("sobrenome"), resultado.getString("email"), resultado.getString("senha"));
+            } else {
+                funcionario = new Funcionario(resultado.getInt("cpf"), resultado.getInt("tipo"), resultado.getString("nome"), resultado.getString("sobrenome"), resultado.getString("email"), resultado.getString("senha"));
+            }
         }
+
         return null;
     }
     
