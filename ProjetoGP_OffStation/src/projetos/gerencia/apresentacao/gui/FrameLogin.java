@@ -15,9 +15,9 @@ import projetos.gerencia.Principal;
 
 public class FrameLogin extends JFrame implements ActionListener {
     
-    private JButton entrar = new JButton("Entrar");
-    private JTextField cpf = new JTextField();
-    private JPasswordField senha = new JPasswordField();
+    private final JButton entrar = new JButton("Entrar");
+    private final JTextField cpf = new JTextField();
+    private final JPasswordField senha = new JPasswordField();
     
     public FrameLogin() {
         super("Tela de Login");
@@ -52,7 +52,7 @@ public class FrameLogin extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if ((e.getSource() == this.entrar) && (this.cpf != null) && (this.senha != null)) {
+        if ((e.getSource() == this.entrar)) {
             String senha = String.valueOf(this.senha.getPassword());
             Principal.getInstancia().fazerLogin(this.cpf.getText(), senha);
         } else {
