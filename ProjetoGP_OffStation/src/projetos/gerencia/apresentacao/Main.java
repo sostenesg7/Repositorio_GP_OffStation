@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import projetos.gerencia.apresentacao.gui.FrameLogin;
-
+//
 public class Main extends Application{
 
      @Override
