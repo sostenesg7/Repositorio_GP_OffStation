@@ -51,12 +51,11 @@ public class PersistirCliente {
                 new Object[]{cliente.getNome(), cliente.getSobrenome(), cliente.getEmail()}) == 1;
     }
 
-    private ICliente construirCliente(QueryResult resultado) {
+    private ICliente construir(QueryResult resultado) {
         if ((resultado != null)) {
             ICliente cliente = new Cliente(resultado.getInt("id"), resultado.getString("nome"), resultado.getString("sobrenome"), resultado.getString("email"));
             return cliente;
         }
-
         return null;
     }
 
@@ -65,7 +64,7 @@ public class PersistirCliente {
         ICliente cliente = null;
 
         if ((resultado.next())) {
-            cliente = this.construirCliente(resultado);
+            cliente = this.construir(resultado);
         }
 
         resultado.close();
@@ -77,7 +76,7 @@ public class PersistirCliente {
         QueryResult resultado = Conectar.getInstancia().getJdbc().query("SELECT * FROM `clientes`");
 
         while (resultado.next()) {
-            ICliente cliente = this.construirCliente(resultado);
+            ICliente cliente = this.construir(resultado);
             clientes.put(cliente.getId(), cliente);
         }
 

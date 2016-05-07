@@ -11,10 +11,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import projetos.gerencia.Principal;
 
 public class FrameLogin extends JFrame implements ActionListener {
     
-    private JButton entrar = null;
+    private JButton entrar = new JButton("Entrar");
+    private JTextField cpf = new JTextField();
+    private JPasswordField senha = new JPasswordField();
     
     public FrameLogin() {
         super("Tela de Login");
@@ -32,14 +35,12 @@ public class FrameLogin extends JFrame implements ActionListener {
         formulario.setLayout(new GridLayout(3, 2));
         
         formulario.add(new JLabel("CPF: "));
-        formulario.add(new JTextField());
+        formulario.add(this.cpf);
         formulario.add(new JLabel("Senha: "));
-        formulario.add(new JPasswordField());
+        formulario.add(this.senha);
         formulario.add(new JLabel(""));
         
-        this.entrar = new JButton("Entrar");
         this.entrar.addActionListener(this);
-        
         formulario.add(this.entrar);
         
         JLabel intro = new JLabel("Bem vindo");
@@ -51,8 +52,11 @@ public class FrameLogin extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if ((e.getSource() == this.entrar)) {
-            System.out.println("Fazer sistema de login...");
+        if ((e.getSource() == this.entrar) && (this.cpf != null) && (this.senha != null)) {
+            String senha = String.valueOf(this.senha.getPassword());
+            Principal.getInstancia().fazerLogin(this.cpf.getText(), senha);
+        } else {
+            System.err.println("Algo errado...");
         }
     }
     
