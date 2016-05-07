@@ -17,6 +17,10 @@ public class PersistirVeiculo {
 
         return PersistirVeiculo.INSTANCIA;
     }
+    
+    public IVeiculo recuperar(int id) {
+        return null;
+    }
 
     public boolean salvar(IVeiculo veiculo) {
         if ((veiculo.getId() > 0)) {
