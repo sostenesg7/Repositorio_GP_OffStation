@@ -1,11 +1,12 @@
 package projetos.gerencia.apresentacao;
 
 import projetos.gerencia.negocio.cliente.Cliente;
+import projetos.gerencia.negocio.cliente.ICliente;
 import projetos.gerencia.persistencia.cliente.PersistirCliente;
 
 public final class ControlarCliente {
 
-    private Cliente cliente;
+    private ICliente cliente;
 
     /*
      Invés de passar parametro por parametro, seria mais interessante passar o objeto que vai
@@ -17,23 +18,19 @@ public final class ControlarCliente {
      que precisar ser persistido no banco de dados, enfim, acho que vc entendeu.
      */
     public ControlarCliente(String nome, String sobrenome, String email) {
-        this.iniciar(nome, sobrenome, email);
-    }
-
-    public void iniciar(String nome, String sobrenome, String email) {
         Cliente novoCliente = new Cliente(nome, sobrenome, email);
         this.setCliente(novoCliente);
     }
 
     public boolean salvar() {
-        return PersistirCliente.getInstancia().salvar(getCliente());
+        return PersistirCliente.getInstancia().salvar(this.getCliente());
     }
 
-    public Cliente getCliente() {
+    public ICliente getCliente() {
         return this.cliente;
     }
 
-    private void setCliente(Cliente cliente) {
+    private void setCliente(ICliente cliente) {
         this.cliente = cliente;
     }
 

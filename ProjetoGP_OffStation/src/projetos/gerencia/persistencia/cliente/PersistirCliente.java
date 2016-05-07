@@ -1,6 +1,6 @@
 package projetos.gerencia.persistencia.cliente;
 
-import projetos.gerencia.negocio.cliente.Cliente;
+import projetos.gerencia.negocio.cliente.ICliente;
 import projetos.gerencia.persistencia.Conectar;
 
 public class PersistirCliente {
@@ -15,23 +15,23 @@ public class PersistirCliente {
         if ((PersistirCliente.INSTANCIA == null)) {
             PersistirCliente.INSTANCIA = new PersistirCliente();
         }
-        
+
         return PersistirCliente.INSTANCIA;
     }
 
-    public boolean salvar(Cliente cliente) {
+    public boolean salvar(ICliente cliente) {
         if ((cliente.getId() > 0)) {
             return this.atualizar(cliente);
         }
         return this.inserir(cliente);
     }
 
-    private boolean inserir(Cliente cliente) {
+    private boolean inserir(ICliente cliente) {
         return Conectar.getInstancia().getJdbc().execute("INSERT INTO `clientes` ( `id`, `nome`, `sobrenome`, `email` ) VALUES ( NULL, ?, ?, ? )",
                 new Object[]{cliente.getNome(), cliente.getSobrenome(), cliente.getEmail()}) == 1;
     }
 
-    private boolean atualizar(Cliente cliente) {
+    private boolean atualizar(ICliente cliente) {
         return Conectar.getInstancia().getJdbc().execute("UPDATE `clientes` SET ( `nome` = ? ), ( `sobrenome` = ? ), ( `email` = ? ) WHERE ( `id` = ? )",
                 new Object[]{cliente.getNome(), cliente.getSobrenome(), cliente.getEmail()}) == 1;
     }

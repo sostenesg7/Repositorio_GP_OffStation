@@ -18,6 +18,7 @@ public final class Cliente implements ICliente {
         this.setEmail(email);
     }
 
+    @Override
     public int getId() {
         return id;
     }
@@ -26,6 +27,7 @@ public final class Cliente implements ICliente {
         this.id = id;
     }
 
+    @Override
     public String getNome() {
         return nome;
     }
@@ -34,6 +36,7 @@ public final class Cliente implements ICliente {
         this.nome = nome;
     }
 
+    @Override
     public String getSobrenome() {
         return sobrenome;
     }
@@ -42,6 +45,7 @@ public final class Cliente implements ICliente {
         this.sobrenome = sobrenome;
     }
 
+    @Override
     public String getEmail() {
         return email;
     }
