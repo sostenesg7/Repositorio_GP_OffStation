@@ -1,7 +1,7 @@
 package projetos.gerencia.apresentacao;
 
 import projetos.gerencia.negocio.veiculo.IVeiculo;
-import projetos.gerencia.persistencia.cliente.PersistirVeiculo;
+import projetos.gerencia.persistencia.veiculo.PersistirVeiculo;
 
 public class ControlarVeiculo {
 

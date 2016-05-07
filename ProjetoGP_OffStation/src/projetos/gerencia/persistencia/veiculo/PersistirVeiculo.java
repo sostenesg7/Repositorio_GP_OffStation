@@ -1,4 +1,4 @@
-package projetos.gerencia.persistencia.cliente;
+package projetos.gerencia.persistencia.veiculo;
 
 import projetos.gerencia.negocio.veiculo.IVeiculo;
 
