@@ -1,5 +1,7 @@
 package projetos.gerencia;
 
+import jdbchelper.JdbcException;
+import projetos.gerencia.exceptions.LoginException;
 import projetos.gerencia.negocio.funcionario.IFuncionario;
 import projetos.gerencia.persistencia.cliente.funcionario.PersistirFuncionario;
 
@@ -12,25 +14,26 @@ public class Principal {
 
     }
 
-    public void fazerLogin(String cpf, String senha) {
+    public void fazerLogin(String cpf, String senha) throws LoginException {
         if ((this.getFuncionario() == null)) {
             try {
                 IFuncionario funcionario = PersistirFuncionario.getInstancia().recuperar(Integer.parseInt(cpf));
                 if ((funcionario != null) && (funcionario.getSenha().equals(senha))) {
                     if ((funcionario.getTipo() <= 0)) {
-                        System.out.println("Você não tem permissão parar acessar essa area!");
+                        throw new LoginException("Você não tem permissão suficiente.");
                     } else {
                         this.setFuncionario(funcionario);
-                        System.out.printf("Bem vindo '%s'\n", funcionario.getNome());
                     }
                 } else {
-                    System.err.println("CPF e/ou senha digitados incorretamente...");
+                    throw new LoginException("Nenhum usuário encontrado com as informações inseridas.");
                 }
+            } catch(JdbcException error) {
+                throw new LoginException("Não foi possível conectar ao banco de dados.");
             } catch (NumberFormatException error) {
-                System.err.println("CPF inválido...");
+                throw new LoginException("CPF digitado de forma incorreta! Use apenas os números.");
             }
         } else {
-            System.err.printf("Oops... Você já está conectado como '%s'\n", this.getFuncionario().getNome());
+            throw new LoginException(new StringBuilder().append("Oops... Você já está conectado como '").append(this.getFuncionario().getNome()).append("'.").toString());
         }
     }
 
