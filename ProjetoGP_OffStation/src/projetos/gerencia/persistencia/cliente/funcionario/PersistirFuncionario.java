@@ -52,7 +52,7 @@ public class PersistirFuncionario {
             }
         }
 
-        return null;
+        return funcionario;
     }
     
     public IFuncionario recuperar(int cpf) {
