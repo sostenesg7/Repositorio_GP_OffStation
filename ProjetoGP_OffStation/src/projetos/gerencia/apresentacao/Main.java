@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import projetos.gerencia.apresentacao.gui.FrameLogin;
-//
+//nova main
 public class Main extends Application{
 
     @Override
