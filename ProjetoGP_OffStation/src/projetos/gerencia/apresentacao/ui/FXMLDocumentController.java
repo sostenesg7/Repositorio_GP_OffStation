@@ -27,7 +27,6 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleButtonAction(ActionEvent event) {
-
         if ((this.txtLogin.getText().isEmpty())) {
             lbl1.setTextFill(Color.RED);
             System.err.println("Senha Vazia.");
