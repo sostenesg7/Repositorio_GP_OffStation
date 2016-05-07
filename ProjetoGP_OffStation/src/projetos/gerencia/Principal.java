@@ -20,20 +20,20 @@ public class Principal {
                 IFuncionario funcionario = PersistirFuncionario.getInstancia().recuperar(Integer.parseInt(cpf));
                 if ((funcionario != null) && (funcionario.getSenha().equals(senha))) {
                     if ((funcionario.getTipo() <= 0)) {
-                        throw new LoginException("Você não tem permissão suficiente.");
+                        throw new LoginException(LoginException.SEM_PERMISSAO, LoginException.SEM_PERMISSAO_ID);
                     } else {
                         this.setFuncionario(funcionario);
                     }
                 } else {
-                    throw new LoginException("Nenhum usuário encontrado com as informações inseridas.");
+                    throw new LoginException(LoginException.NAO_ENCONTRADO, LoginException.NAO_ENCONTRADO_ID);
                 }
             } catch(JdbcException error) {
-                throw new LoginException("Não foi possível conectar ao banco de dados.");
+                 throw new LoginException(LoginException.SEM_CONEXOES, LoginException.SEM_CONEXOES_ID);
             } catch (NumberFormatException error) {
-                throw new LoginException("CPF digitado de forma incorreta! Use apenas os números.");
+                throw new LoginException(LoginException.CPF_INVALIDO, LoginException.CPF_INVALIDO_ID);
             }
         } else {
-            throw new LoginException(new StringBuilder().append("Oops... Você já está conectado como '").append(this.getFuncionario().getNome()).append("'.").toString());
+            throw new LoginException(LoginException.SESSAO_ATIVA, LoginException.SESSAO_ATIVA_ID);
         }
     }
 
